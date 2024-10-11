@@ -23,20 +23,24 @@ public class UserInterface {
 
             switch (option) {
                 case "1":
-                    System.out.println("Enter student names");
-                    String names = input.nextLine();
+                    System.out.print("Enter student's first name: ");
+                    String firstName = input.nextLine();
+                    System.out.print("Enter student's last name: ");
+                    String lastName = input.nextLine();
+
                     String email = "";
                     boolean checkEmail = false;
                     while (!checkEmail) {
-                        System.out.println("Enter the email of the student:");
+                        System.out.print("Enter the email of the student: ");
                         email = input.nextLine();
                         if (!rc.checkEmail(email)) {
                             checkEmail = true;
                         } else {
-                            System.out.println("The user with this email, already exists");
+                            System.out.println("The user with this email already exists.");
                         }
                     }
-                    System.out.println("Enter student's class");
+
+                    System.out.print("Enter student's class: ");
                     String studentClass = input.nextLine();
 
                     Date date = null;
@@ -51,28 +55,28 @@ public class UserInterface {
                         }
                     }
 
-                    Record record = new Record(names, email, date, studentClass);
+                    Record record = new Record(firstName, lastName, date, email, studentClass);
                     rc.add(record);
                     break;
 
                 case "2":
                     System.out.println("Here is the list of students...");
-                    System.out.println(Record.getTableHeader());
                     rc.displayAllStudents();
                     break;
 
                 case "3":
-                    System.out.println("enter a student's email :");
-                    String studentEmail = input.next();
+                    System.out.print("Enter a student's email: ");
+                    String studentEmail = input.nextLine();
                     rc.searchForStudent(studentEmail);
                     break;
+
                 case "4":
                     String pastEmail = null;
                     boolean validEmail = false;
 
                     while (!validEmail) {
-                        System.out.println("Enter the email of the student you want to update:");
-                        pastEmail = input.next();
+                        System.out.print("Enter the email of the student you want to update: ");
+                        pastEmail = input.nextLine();
 
                         if (rc.checkEmail(pastEmail)) {
                             validEmail = true;
@@ -81,15 +85,17 @@ public class UserInterface {
                         }
                     }
 
-                    System.out.println("Enter new names of a student:");
-                    String newNames = input.next();
-                    System.out.println("Enter the new email of a student:");
-                    String newEmail = input.next();
-                    System.out.println("Update the dob of student:");
+                    System.out.print("Enter new student's first name: ");
+                    String newFirstName = input.nextLine();
+                    System.out.print("Enter new student's last name: ");
+                    String newLastName = input.nextLine();
+                    System.out.print("Enter the new email of the student: ");
+                    String newEmail = input.nextLine();
+                    System.out.print("Update the dob of student: ");
 
                     Date birthDate = null;
                     while (birthDate == null) {
-                        System.out.println("Enter your date of birth (yyyy-MM-dd):");
+                        System.out.print("Enter your date of birth (yyyy-MM-dd): ");
                         String dateOfBirth = input.nextLine();
                         try {
                             birthDate = dateFormat.parse(dateOfBirth);
@@ -98,21 +104,23 @@ public class UserInterface {
                         }
                     }
 
-                    System.out.println("Enter the student's class:");
-                    String newStudentClass = input.next();
+                    System.out.print("Enter the student's class: ");
+                    String newStudentClass = input.nextLine();
 
-                    Record rec = new Record(newNames, newEmail, birthDate, newStudentClass);
+                    Record rec = new Record(newFirstName, newLastName, birthDate, newEmail, newStudentClass);
                     rc.updateStudent(pastEmail, rec);
                     break;
 
                 case "5":
-                    System.out.println("Enter the email of a student to be deleted");
-                    String emailTodelete = input.next();
-                    rc.deleteStudent(emailTodelete);
+                    System.out.print("Enter the email of a student to be deleted: ");
+                    String emailToDelete = input.nextLine();
+                    rc.deleteStudent(emailToDelete);
                     break;
+
                 case "6":
                     rc.addCsv();
                     break;
+
                 case "menu":
                 case "help":
                     menu();
