@@ -15,7 +15,8 @@ public class UserInterface {
         while (true) {
             System.out.print("Please choose an option(Type help to see our menu): ");
             if (!input.hasNextLine()) {
-                System.out.println("Invalid input! Please enter a correct input.");
+                System.out.println("Invalid input! Please enter a correct input!" +
+                        ".");
                 input.next();
                 break;
             }
@@ -147,6 +148,6 @@ public class UserInterface {
         System.out.println("4. Update a student");
         System.out.println("5. Delete a student");
         System.out.println("6. Insert a CSV file");
-        System.out.println("0. Exit");
+        System.out.println("00. Exit");
     }
 }

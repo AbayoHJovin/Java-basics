@@ -48,6 +48,8 @@ public class RecordManagement {
         try {
             PreparedStatement pstmt = conn.prepareStatement(query);
             ResultSet res = pstmt.executeQuery();
+            Record record= new Record();
+            record.getTableHeader();
             while (res.next()) {
                 String firstName = res.getString("firstName");
                 String lastName = res.getString("lastName");
@@ -75,6 +77,8 @@ public class RecordManagement {
                 Date dob = rs.getDate("dob");
                 String studentClass = rs.getString("studentClass");
                 System.out.println("Student found: \n");
+                Record record=new Record();
+                record.getTableHeader();
                 System.out.println(new Record(firstName, lastName, dob, studentEmail, studentClass));
             } else {
                 System.out.println("Unknown student with email " + email + "!");

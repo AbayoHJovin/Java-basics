@@ -14,7 +14,10 @@ public class Person {
         this.email=email;
         this.dob=dob;
     }
-
+public Person(String firstName,String lastName,Date dob){
+        this.firstName=firstName;
+        this.lastName=lastName;
+}
     public String getEmail() {
         return email;
     }
